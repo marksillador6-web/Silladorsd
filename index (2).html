@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Den Sillador | Creative Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ===== MODERN THEME VARIABLES ===== */
+    :root {
+      --accent: #ffcd38;
+      --accent-glow: rgba(255, 205, 56, 0.3);
+      --bg-dark: #0a0a0a;
+      --card-bg: rgba(255, 255, 255, 0.03);
+      --text-bright: #ffffff;
+      --text-muted: #a0a0a0;
+      --transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    /* ===== RESET & BASE ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg-dark);
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(255, 205, 56, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(255, 205, 56, 0.05) 0%, transparent 40%),
+        url('0f89eee10dd0883ed50bc57d5655a102.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: var(--text-bright);
+      line-height: 1.7;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #111; }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
+
+    /* ===== HEADER ===== */
+    header {
+      padding: 80px 20px 40px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      letter-spacing: -2px;
+      background: linear-gradient(135deg, #fff 30%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+    }
+
+    /* ===== ABOUT SECTION ===== */
+    .about {
+      max-width: 850px;
+      margin: 0 auto 80px;
+      background: var(--card-bg);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 40px;
+      padding: 60px 40px;
+      backdrop-filter: blur(20px);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(transparent, transparent, var(--accent), transparent);
+      animation: rotate 6s linear infinite;
+      z-index: -1;
+      opacity: 0.2;
+    }
+
+    @keyframes rotate { 100% { transform: rotate(360deg); } }
+
+    .about img {
+      border-radius: 30px;
+      width: 220px;
+      height: 220px;
+      object-fit: cover;
+      margin-bottom: 25px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+      border: 2px solid var(--accent);
+    }
+
+    .about p {
+      font-size: 1.2rem;
+      font-weight: 300;
+      color: var(--text-muted);
+      max-width: 700px;
+      margin: 0 auto 30px;
+    }
+
+    /* ===== DOWNLOAD BUTTON ===== */
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 15px 35px;
+      background: transparent;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      border: 2px solid var(--accent);
+      border-radius: 50px;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .download-btn:hover {
+      color: var(--bg-dark);
+      box-shadow: 0 0 20px var(--accent-glow);
+    }
+
+    .download-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 100%;
+      background: var(--accent);
+      transition: var(--transition);
+      z-index: -1;
+    }
+
+    .download-btn:hover::before {
+      width: 100%;
+    }
+
+    /* ===== GALLERY ===== */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .gallery figure {
+      background: var(--card-bg);
+      border-radius: 25px;
+      padding: 15px;
+      border: 1px solid rgba(255,255,255,0.05);
+      transition: var(--transition);
+    }
+
+    .gallery figure:hover {
+      transform: translateY(-15px);
+      background: rgba(255,255,255,0.08);
+      border-color: var(--accent);
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 20px;
+      filter: grayscale(30%);
+      transition: var(--transition);
+    }
+
+    .gallery figure:hover img {
+      filter: grayscale(0%);
+    }
+
+    .gallery figcaption {
+      margin-top: 15px;
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--accent);
+    }
+
+    /* ===== VIDEO SECTION ===== */
+    .music-intro {
+      text-align: center;
+      margin: 100px 0 40px;
+    }
+
+    .videos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+      margin-bottom: 100px;
+    }
+
+    .video-item iframe {
+      border-radius: 25px;
+      border: 4px solid rgba(255,255,255,0.05);
+      transition: var(--transition);
+    }
+
+    .video-item:hover iframe {
+      border-color: var(--accent);
+      box-shadow: 0 0 30px var(--accent-glow);
+    }
+
+    /* ===== PROJECTS ===== */
+    .links {
+      max-width: 800px;
+      margin: 80px auto;
+      padding: 40px;
+      background: linear-gradient(to bottom right, rgba(255,255,255,0.05), transparent);
+      border-radius: 30px;
+    }
+
+    .links h2 {
+      font-size: 2.2rem;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .links ul { list-style: none; }
+
+    .links li {
+      margin: 15px 0;
+      padding: 20px;
+      background: rgba(255,255,255,0.02);
+      border-radius: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-left: 4px solid transparent;
+      transition: var(--transition);
+    }
+
+    .links li:hover {
+      border-left-color: var(--accent);
+      background: rgba(255,255,255,0.08);
+      transform: scale(1.02);
+    }
+
+    .links a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+    }
+
+    /* ===== FEEDBACK FORM ===== */
+    .feedback {
+      background: var(--text-bright);
+      color: var(--bg-dark);
+      padding: 60px 40px;
+      border-radius: 40px;
+      max-width: 650px;
+      margin: 100px auto;
+      text-align: center;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+    }
+
+    textarea {
+      width: 100%;
+      height: 150px;
+      border-radius: 20px;
+      border: 2px solid #eee;
+      padding: 20px;
+      margin: 20px 0;
+      font-family: inherit;
+      background: #fcfcfc;
+      transition: var(--transition);
+    }
+
+    button {
+      background: var(--bg-dark);
+      color: white;
+      padding: 18px 50px;
+      border: none;
+      border-radius: 50px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    button:hover {
+      background: var(--accent);
+      color: var(--bg-dark);
+      transform: translateY(-5px);
+    }
+
+    footer {
+      padding: 60px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+    }
+
+    @media (max-width: 768px) {
+      header h1 { font-size: 2.5rem; }
+      .about { width: 90%; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Den Sillador</h1>
+    <p style="color: var(--accent); letter-spacing: 3px;">CREATIVE EDITOR & DESIGNER</p>
+  </header>
+
+  <section class="about">
+    <img src="/Den/1775633243126.jpg" alt="Den Sillador">
+    <h3 style="margin-bottom: 10px; color: #fff;">"A work in progress, but always moving forward"</h3>
+    <p>Explore and enjoy a collection of who I am and what I create — from my story and projects to videos and images that reflect my journey.</p>
+    
+    <a href="/Den/1775635436905.jpg" download="Den_Sillador_Portfolio" class="download-btn">
+      <span>Download Resume</span>
+    </a>
+  </section>
+
+  <section class="gallery">
+    <figure>
+      <img src="/Den/1775634728078.jpg" alt="TikTok edit sample">
+      <figcaption>Alight Motion Edits <br><small style="color: #fff; font-weight: 300;">36.8K+ Followers | 2.3M Likes</small></figcaption>
+    </figure>
+    <figure>
+      <img src="/Den/1775634711405.jpg" alt="Alight Motion transition">
+      <figcaption>Cinematic Style <br><small style="color: #fff; font-weight: 300;">Smooth transitions & Million+ views</small></figcaption>
+    </figure>
+    <figure>
+      <img src="/Den/Picsart_25-09-05_18-56-43-044.jpg" alt="Smooth transitions">
+      <figcaption>Layered Effects <br><small style="color: #fff; font-weight: 300;">Professional layered compositions</small></figcaption>
+    </figure>
+  </section>
+
+  <div class="music-intro">
+    <h2 style="font-size: 2.5rem;">Favorite Music</h2>
+    <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto;">Music is the heartbeat of my creative process.</p
+  </div>
+
+  <section class="videos">
+    <div class="video-item"><iframe width="320" height="240" src="https://www.youtube.com/embed/ApXoWvfEYVU" frameborder="0" allowfullscreen></iframe></div>
+    <div class="video-item"><iframe width="320" height="240" src="https://www.youtube.com/embed/QBgl4rVz3Ks" frameborder="0" allowfullscreen></iframe></div>
+    <div class="video-item"><iframe width="320" height="240" src="https://www.youtube.com/embed/pSZjq5CxRsk" frameborder="0" allowfullscreen></iframe></div>
+  </section>
+
+  <section class="links">
+    <h2>Featured Projects</h2>
+    <ul>
+      <li><span>Canva Portfolio</span> <a href="https://www.canva.com/design/DAGvwoPdMPw/e11TI-kWbuTGVh05xjxojA/edit" target="_blank">View Project →</a></li>
+      <li><span>My 3 AI Tools</span> <a href="https://www.canva.com/design/DAGyA90iBgI/bTa1t0yOYSilEKENZWPRGA/view" target="_blank">View Design →</a></li>
+      <li><span>Figma Prototype</span> <a href="https://www.figma.com/proto/eNpd6PMjbJsAcZO8YDhKoZ?node-id=0:1" target="_blank">View Prototype →</a></li>
+    </ul>
+  </section>
+
+  <section class="feedback">
+    <h2 style="font-weight: 700;">Get In Touch</h2>
+    <p>Let's collaborate on something amazing.</p>
+    <textarea placeholder="Write your thoughts here..."></textarea>
+    <button>Submit Message</button>
+  </section>
+
+  <footer>
+    &copy; 2025 DEN SILLADOR <br>
+    <span style="font-size: 0.7rem; opacity: 0.5;">BUILT WITH PRECISION & PASSION</span>
+  </footer>
+
+</body>
+</html>
